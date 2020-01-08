@@ -138,6 +138,13 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>D:\Steam\steamapps\common\rocketleague\Binaries\Win32\bakkesmod\bakkesmodsdk\lib</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>C:\Users\Jonas\source\repos\Bakkes\bakkesmod-patch "$(TargetPath)"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
