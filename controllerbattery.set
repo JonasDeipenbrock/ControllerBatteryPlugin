@@ -3,3 +3,6 @@ Controller Battery Plugin
 1|Enable controller shake when battery gets low|controllerbattery_shake_notification
 5|X Position|controllerbattery_window_position_x|0|1920
 5|Y Position|controllerbattery_window_position_y|0|1080
+8|
+0|Test controller vibration|vibrate
+9|test123

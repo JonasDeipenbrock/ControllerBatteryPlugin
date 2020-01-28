@@ -3,6 +3,8 @@
 
 
 #include "bakkesmod/plugin/bakkesmodplugin.h"
+#include  "xinput.h"
+
 
 
 typedef struct {
@@ -26,5 +28,7 @@ public:
 	virtual void onUnload();
 
 	void Render(CanvasWrapper canvas);
+	void setVibration(int left, int right);
+	void vibrate();
 	void ResetStatus();
 };

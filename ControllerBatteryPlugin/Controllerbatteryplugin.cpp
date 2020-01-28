@@ -7,6 +7,8 @@
 
 BAKKESMOD_PLUGIN(ControllerBatteryPlugin, "Controller Battery Plugin", "0.1", 0)	//TODO: Update Plugin type
 float refreshIntervall = 15;
+XINPUT_VIBRATION vibration;
+DWORD current_user = 0;
 
 /*
 	called when plugin is loaded, main command here
@@ -34,12 +36,15 @@ void ControllerBatteryPlugin::onLoad()
 	cvarManager->getCvar("controllerbattery_shake_notification").addOnValueChanged(std::bind(&ControllerBatteryPlugin::logStatusToConsole, this, std::placeholders::_1, std::placeholders::_2));
 	cvarManager->getCvar("controllerbattery_display_status").addOnValueChanged(std::bind(&ControllerBatteryPlugin::logStatusToConsole, this, std::placeholders::_1, std::placeholders::_2));
 
-	
+	// remove later
+	//Test vibration
+	this->setVibration(32000, 16000);
+	this->vibrate();
+
 	//init state
 	/*
-		Get init value and reset olf values
+		Get init value and reset old values
 		*/
-
 
 	//hook events
 	gameWrapper->RegisterDrawable(std::bind(&ControllerBatteryPlugin::Render, this, std::placeholders::_1));
@@ -105,6 +110,18 @@ void ControllerBatteryPlugin::Render(CanvasWrapper canvas)
 	canvas.DrawString("TestString" + std::to_string(15), 3, 3);
 }
 
+
+void ControllerBatteryPlugin::setVibration(int left, int right) {
+	vibration.wLeftMotorSpeed = left;
+	vibration.wRightMotorSpeed = right;
+}
+
+
+void ControllerBatteryPlugin::vibrate() {
+	XInputSetState(current_user, &vibration);
+	setVibration(0, 0);
+	XInputSetState(current_user, &vibration);
+}
 
 
 void ControllerBatteryPlugin::logStatusToConsole(std::string oldValue, CVarWrapper cvar) {
