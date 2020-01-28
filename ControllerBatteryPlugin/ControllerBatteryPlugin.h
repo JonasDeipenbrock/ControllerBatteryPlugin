@@ -20,7 +20,7 @@ private:
 
 
 	void logStatusToConsole(std::string oldValue, CVarWrapper cvar);
-	void updateStatus(float time);
+	void updateStatus();
 public:
 	virtual void onLoad();
 	virtual void onUnload();
